@@ -3,11 +3,7 @@ import logo from '../assets/abc-board-learining-svgrepo-com.svg';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const [isVisible, setIsVisible] = React.useState(true);
-  const handleGetStartedClick = () => {
-    setIsVisible(false); 
-  };
-
+ 
   return (
     <nav>
       <div className="border-2 mt-0 bg-violet-500 border-pink-700 p-3 rounded-3xl shadow-md">
@@ -18,7 +14,7 @@ const Navbar = () => {
           </h1>
         </div>
       </div>
-      {isVisible && (
+ 
         <div className="flex flex-col items-center justify-top min-h-screen p-6">
           <div className="max-w-md text-center mt-5 bg-red-500 p-6 rounded-lg shadow-lg">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
@@ -30,17 +26,18 @@ const Navbar = () => {
               Gain certifications to boost your career. <br />
               Start your journey to success today!
             </p>
-            <Link to="/">
+            <Link to="/home">
               <button
-                onClick={handleGetStartedClick}
+                
                 className="mt-6 bg-white border-2 border-blue-500 text-blue-500 text-xl font-bold px-8 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition"
               >
                 Get Started
               </button>
             </Link>
+            
           </div>
         </div>
-      )}
+    
     </nav>
   );
 };

@@ -7,9 +7,10 @@ import { Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <div>
-    <Navbar />
+   
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Navbar />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/stream" element={<Stream />} />
     </Routes>
   </div>
