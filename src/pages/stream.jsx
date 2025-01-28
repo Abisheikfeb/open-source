@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Stream = () => {
-  const [pdfUrl, setPdfUrl] = useState(null);
+  const [pdfUrls, setPdfUrls] = useState([]); // Store multiple PDFs
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
-    // Check if the file is a PDF
     if (file.type !== "application/pdf") {
       setError("Please upload a valid PDF file.");
       return;
@@ -28,7 +29,7 @@ const Stream = () => {
 
       const data = await response.json();
       if (response.ok) {
-        setPdfUrl(data.secure_url);
+        setPdfUrls((prevUrls) => [...prevUrls, data.secure_url]); // Store multiple URLs
         setError(null);
       } else {
         setError(`Upload failed: ${data.error?.message || "Unknown error"}`);
@@ -46,16 +47,18 @@ const Stream = () => {
       <input type="file" accept="application/pdf" onChange={handleUpload} />
       {loading && <p>Uploading...</p>}
       {error && <p className="text-red-500">{error}</p>}
-      {pdfUrl && (
-        <div className="mt-4">
-          <p>Uploaded PDF:</p>
-          <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
-            View PDF
-          </a>
-        </div>
+
+      {pdfUrls.length > 0 && (
+        <button
+          onClick={() => navigate("/pdfs", { state: { pdfUrls } })}
+          className="mt-4 p-2 bg-blue-500 text-white rounded"
+        >
+          View All PDFs
+        </button>
       )}
     </div>
   );
 };
 
 export default Stream;
+
