@@ -10,6 +10,7 @@
     "ajv-keywords": "^5.1.0",
     "axios": "^1.7.9",
     "cloudinary-react": "^1.8.1",
+    "jspdf": "^2.5.2",
     "pdf-lib": "^1.17.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

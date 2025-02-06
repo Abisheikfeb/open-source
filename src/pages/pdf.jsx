@@ -4,8 +4,9 @@ const PdfList = () => {
   const [pdfs, setPdfs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch PDFs from the backend server
+  // Fetch PDFs from backend
   useEffect(() => {
     const fetchPdfs = async () => {
       try {
@@ -25,29 +26,73 @@ const PdfList = () => {
     fetchPdfs();
   }, []);
 
+  // Function to shorten file names
+  const shortenFileName = (name, maxLength = 15) => {
+    if (name.length <= maxLength) return name;
+    return name.substring(0, maxLength) + "...";
+  };
+
+  // Filter PDFs based on search term
+  const filteredPdfs = pdfs.filter((pdf) =>
+    pdf.public_id.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   if (loading) {
-    return <div>Loading PDFs...</div>;
+    return <div className="text-center text-lg font-semibold">Loading PDFs...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="text-red-500 text-center">Error: {error}</div>;
   }
 
   return (
-    <div>
-      <h1>List of PDFs</h1>
-      {pdfs.length === 0 ? (
-        <p>No PDFs found.</p>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold text-center mb-4">List of PDFs</h1>
+
+      {/* Search Input */}
+      <input
+        type="text"
+        placeholder="Search PDFs..."
+        className="w-full p-2 mb-4 border text-black font-bold border-gray-300 rounded-lg"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
+      {filteredPdfs.length === 0 ? (
+        <p className="text-center text-gray-500">No matching PDFs found.</p>
       ) : (
-        <ul>
-          {pdfs.map((pdf) => (
-            <li key={pdf.public_id}>
-              <a href={pdf.url} target="_blank" rel="noopener noreferrer">
-                {pdf.public_id}.pdf
-              </a>
-            </li>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {filteredPdfs.map((pdf) => (
+            <div
+              key={pdf.public_id}
+              className="bg-white shadow-md rounded-lg p-4 border border-gray-200 flex flex-col items-center text-center"
+            >
+              {/* File Name Below */}
+              <h2 className="text-md font-semibold text-black w-full truncate mb-3">
+                {shortenFileName(pdf.public_id)}.pdf
+              </h2>
+
+              {/* Buttons */}
+              <div className="flex justify-between w-full mt-2">
+                <a
+                  href={pdf.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                >
+                  View
+                </a>
+                <a
+                  href={pdf.url}
+                  download={`${pdf.public_id}.pdf`}
+                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+                >
+                  Download
+                </a>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

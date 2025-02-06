@@ -3,6 +3,7 @@ import { FaListUl } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { MdArrowBack } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { FaGithub } from "react-icons/fa";
 
 const Home = () => {
   const [nav, setNav] = useState(false);
@@ -19,19 +20,19 @@ const Home = () => {
             </Link>
           </button>
         </div>
-        <h1 className="text-pink-800 text-2xl text-center font-semibold md:text-4xl">E-SOURCE</h1>
-        <ul className="hidden md:flex space-x-10">
-          <button>Home</button>
-          <button>About Me</button>
-          <button>My Skills</button>
-          <button>Projects</button>
-          <button>Certificate</button>
-          <button>Contact Me</button>
+        <h1 className="text-pink-800 text-2xl flex items-start font-semibold md:text-4xl">E-SOURCE</h1>
+        <ul className="hidden md:flex space-x-10   text-black font-semibold">
+          <button className="border-2 rounded-lg p-1 border-purple-800 bg-orange-300">Devolopers</button>
+          <button className="border-2 rounded-lg p-1 border-purple-800 bg-orange-300">Donation</button>
+          <button className="border-2 rounded-lg p-1 border-purple-800 bg-orange-300">Contribute source</button>
+          <button className="border-2 rounded-lg p-1 border-purple-800 bg-orange-300">Contact Me</button>
         </ul>
-        <div className="hidden md:flex items-center ml-5 space-x-4">
-          <button className="bg-blue-600 px-4 py-2 rounded-lg text-white">Sign In</button>
-          <button className="bg-blue-600 px-4 py-2 rounded-lg text-white">Sign Up</button>
-        </div>
+        <div className="hidden md:flex justify-center items-center ">
+        <button>
+  <FaGithub className="text-4xl mt-5 mb-3 text-black" />
+  </button>
+</div>
+     
         <div className="md:hidden cursor-pointer" onClick={handleNavigation}>
           {nav ? <IoClose className="text-blue-700 h-5 w-5" /> : <FaListUl className="text-blue-700 h-5 w-5" />}
         </div>
@@ -39,41 +40,52 @@ const Home = () => {
       <div className='md:hidden'>
         
     <ul className={!nav?"hidden" :'w-full bg-white/98 absolute px-2 flex justify-end'}>
-    <div className='border-2 border-red-500 bg-slate-400 
-    p-3 ml-16 px-7 mt-5 rounded-2xl  flex flex-col gap-2 cursor-pointer'>
-      <button className=' border-2 px-1 mr-20  py-2 rounded-2xl border-indigo-200 '>Home</button>
-      <button className=' border-2 px-1 mr-20  py-2 rounded-2xl border-indigo-200'>Aboutme</button>
-      <button className=' border-2 px-1 mr-20  py-2 rounded-2xl border-indigo-200'>Myskill</button>
-      <button className=' border-2 px-1 mr-20  py-2 rounded-2xl border-indigo-200'>Project</button>
-      <button className=' border-2 px-1 mr-20  py-2 rounded-2xl border-indigo-200'>Certificate</button>
-      <button className=' border-2 px-1 mr-20  py-2 rounded-2xl border-indigo-200'>Contact</button>
+    <div className='border-2 border-red-500 bg-slate-400 justify-center 
+    p-3 px-5 mt-5 rounded-2xl  flex flex-col gap-4 cursor-pointer'>
+      <button className=' border-2 px-3  py-2 rounded-md border-indigo-600 '>Davoloper</button>
+      <button className=' border-2 px-3  py-2 rounded-md border-indigo-600'>Donation</button>
+      <button className=' border-2 px-3  py-2 rounded-md border-indigo-600'>Contribute source</button>
+      <button className=' border-2 px-3  py-2 rounded-md border-indigo-600'>Contact</button>
 
 
-      <div className='flex flex-row mt-6 -ml-7'>
-      <button className='bg-transparent text-indigo-500 border px-2 ml-3 py-2 border-indigo-600 mr-9 rounded-md'>sign in</button>
-      <button className='bg-indigo-400 text-white px-2 py-2 rounded-md'>sign up</button>
-      </div>
+      <div className="flex justify-center items-center">
+        <button>
+  <FaGithub className="text-4xl mt-5 mb-3 text-black" />
+  </button>
+</div>
       </div>
     </ul>
     
     </div>
-    <div className="flex flex-col gap-4 items-center justify-center mt-16">
+    <div className="flex flex-col md:flex-row gap-4 items-center justify-center mt-16">
+  
+  <div className="flex flex-col md:flex-row gap-4 p-6 border md:p-20 rounded-2xl shadow-lg bg-white">
     
+    <Link to="/pdf">
+      <button className="px-7 py-12 md:p-16 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600">
+        FREE-BOOK
+      </button>
+    </Link>
+
     <Link to="/stream" className="flex items-center">
-    <button>START-LEARN
-              
-        
+      <button className="px-6 py-12 bg-green-500 md:p-16 text-white font-semibold rounded-lg shadow-md hover:bg-green-600">
+        START-LEARN
+      </button>
+    </Link>
+    <Link to="/WikiSearch" className="flex items-center" >
+    <button className="px-10 py-12 bg-purple-500 md:p-16 text-white font-semibold rounded-lg shadow-md hover:bg-purple-600">
+      WikiSearch
     </button>
     </Link>
-    <button>FREE-BOOK</button>
-    <button>PROJRCT</button>
-    
-    
-    
-    </div>
+
+  </div>
+</div>
+
     
     </div>
   )
+
+  
 }
 
 export default Home

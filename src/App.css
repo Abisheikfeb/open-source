@@ -11,3 +11,22 @@ body
   color: white;
   font-family: 'outfit';
 }
+
+@keyframes dashAnimation {
+  0% {
+    border-image-source: linear-gradient(60deg, transparent, rgb(26, 17, 201));
+  }
+  70% {
+    border-image-source: linear-gradient(80deg, rgb(229, 62, 62), transparent);
+  }
+  100% {
+    border-image-source: linear-gradient(80deg, transparent, rgb(217, 241, 39));
+  }
+}
+
+.animate-border {
+  border-style: dashed;
+  border-image-slice: 1;
+  animation: dashAnimation 2s infinite linear;
+}
+
