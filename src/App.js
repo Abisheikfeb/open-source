@@ -6,7 +6,9 @@ import Pdf from './pages/pdf';
 import Pdfdownlode from './components/Pdfdownloder';
 import WikiSearch from './components/WikiSearch';
 import WikiArticle from './components/WikiArticle';
+import AI from './pages/ai';
 import { Routes, Route } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
       <Route path='/pdfdownlode' element={<Pdfdownlode/>}/>
       <Route path='/WikiSearch' element={<WikiSearch/>}/>
       <Route path="/article/:pageid" element={<WikiArticle />} />
+      <Route path="/ai" element={<AI />} />
+
       
     </Routes>
   </div>

@@ -32,6 +32,19 @@ const PdfList = () => {
     return name.substring(0, maxLength) + "...";
   };
 
+  // Function to handle direct download
+  const handleDownload = (pdf) => {
+    // Append `fl_attachment` to force download
+    const downloadUrl = pdf.url.replace("/upload/", "/upload/fl_attachment/");
+
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.setAttribute("download", `${pdf.public_id}.pdf`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   // Filter PDFs based on search term
   const filteredPdfs = pdfs.filter((pdf) =>
     pdf.public_id.toLowerCase().includes(searchTerm.toLowerCase())
@@ -82,13 +95,12 @@ const PdfList = () => {
                 >
                   View
                 </a>
-                <a
-                  href={pdf.url}
-                  download={`${pdf.public_id}.pdf`}
+                <button
+                  onClick={() => handleDownload(pdf)}
                   className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
                 >
                   Download
-                </a>
+                </button>
               </div>
             </div>
           ))}
