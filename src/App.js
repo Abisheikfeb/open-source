@@ -7,6 +7,7 @@ import Pdfdownlode from './components/Pdfdownloder';
 import WikiSearch from './components/WikiSearch';
 import WikiArticle from './components/WikiArticle';
 import AI from './pages/ai';
+import Chatbot from './components/Chatbot';
 import { Routes, Route } from 'react-router-dom';
 
 
@@ -23,6 +24,7 @@ function App() {
       <Route path='/WikiSearch' element={<WikiSearch/>}/>
       <Route path="/article/:pageid" element={<WikiArticle />} />
       <Route path="/ai" element={<AI />} />
+      <Route path="/chatbot" element={< Chatbot/>} />
 
       
     </Routes>

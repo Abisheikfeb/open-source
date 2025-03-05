@@ -79,6 +79,12 @@ const Home = () => {
               WikiSearch
             </button>
           </Link>
+
+          <Link to="/chatbot">
+            <button className={`${buttonClass} bg-orange-500 hover:bg-purple-600`}>
+              AI chat
+            </button>
+          </Link>
         </div>
       </div>
     </div>
